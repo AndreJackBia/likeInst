@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     BufferedReader in = null;
     String resultTot = "";
     TextView textNumber;
+    TextView textResult;
 
 
     @Override
@@ -55,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
         numEdit = (EditText) findViewById(R.id.number);
         start = (Button) findViewById(R.id.buttonStart);
         textNumber = (TextView) findViewById(R.id.TextNumber);
+        textNumber.setText("How many likes?");
+        textResult = (TextView) findViewById(R.id.textViewResult);
 
         start.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
@@ -64,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
                     String URL = "https://api.joinsta.com/v1/?link=" + urlPhoto + "&maxlikes=" + num + "";
 
-                    OkHttpHandler okHttpHandler= new OkHttpHandler();
+                    OkHttpHandler okHttpHandler = new OkHttpHandler();
                     okHttpHandler.execute(URL);
 
                     //Toast.makeText(MainActivity.this, prova.toString(), Toast.LENGTH_LONG).show();
@@ -82,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         OkHttpClient client = new OkHttpClient();
 
         @Override
-        protected String doInBackground(String...params) {
+        protected String doInBackground(String... params) {
 
             Request.Builder builder = new Request.Builder();
             builder.url(params[0]);
@@ -91,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
             try {
                 Response response = client.newCall(request).execute();
                 return response.body().string();
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return null;
@@ -100,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            textNumber.setText(s);
+            textResult.setText(s);
         }
     }
 }
