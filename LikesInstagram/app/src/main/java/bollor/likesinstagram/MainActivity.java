@@ -1,5 +1,7 @@
 package bollor.likesinstagram;
 
+import android.os.AsyncTask;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,13 +32,19 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLEncoder;
 
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 public class MainActivity extends AppCompatActivity {
 
     EditText urlPhotoEdit;
     EditText numEdit;
     Button start;
     BufferedReader in = null;
-    String result = "";
+    String resultTot = "";
+    TextView textNumber;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,15 +54,20 @@ public class MainActivity extends AppCompatActivity {
         urlPhotoEdit = (EditText) findViewById(R.id.TextUrl);
         numEdit = (EditText) findViewById(R.id.number);
         start = (Button) findViewById(R.id.buttonStart);
+        textNumber = (TextView) findViewById(R.id.TextNumber);
 
         start.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 try {
-                    String urlPhoto = URLEncoder.encode(urlPhotoEdit.getText().toString(),"UTF-8");
-                    String num = URLEncoder.encode(numEdit.getText().toString(),"UTF-8");
-                    URL website = new URL("https://api.joinsta.com/v1/?link=" + urlPhoto + "&maxlikes=" + num + "");
+                    String urlPhoto = urlPhotoEdit.getText().toString();
+                    String num = numEdit.getText().toString();
 
+                    String URL = "https://api.joinsta.com/v1/?link=" + urlPhoto + "&maxlikes=" + num + "";
 
+                    OkHttpHandler okHttpHandler= new OkHttpHandler();
+                    okHttpHandler.execute(URL);
+
+                    //Toast.makeText(MainActivity.this, prova.toString(), Toast.LENGTH_LONG).show();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -62,5 +75,32 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    public class OkHttpHandler extends AsyncTask<String, Void, String> {
+
+        OkHttpClient client = new OkHttpClient();
+
+        @Override
+        protected String doInBackground(String...params) {
+
+            Request.Builder builder = new Request.Builder();
+            builder.url(params[0]);
+            Request request = builder.build();
+
+            try {
+                Response response = client.newCall(request).execute();
+                return response.body().string();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            textNumber.setText(s);
+        }
     }
 }
