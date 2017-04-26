@@ -50,8 +50,8 @@ public class MainActivity extends AppCompatActivity {
         start.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 try {
-                    String urlPhoto = urlPhotoEdit.getText().toString();
-                    String num = numEdit.getText().toString();
+                    String urlPhoto = URLEncoder.encode(urlPhotoEdit.getText().toString(),"UTF-8");
+                    String num = URLEncoder.encode(numEdit.getText().toString(),"UTF-8");
                     URL website = new URL("https://api.joinsta.com/v1/?link=" + urlPhoto + "&maxlikes=" + num + "");
 
 
