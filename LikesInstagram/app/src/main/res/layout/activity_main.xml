@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,12 +7,64 @@
     tools:context="bollor.likesinstagram.MainActivity">
 
     <TextView
+        android:id="@+id/Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_centerHorizontal="true"
+        android:text="InstaLike"
+        android:textSize="50dp" />
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/urlPhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Paste URL"
+        android:layout_below="@+id/Title"
+        android:layout_toLeftOf="@+id/Title"
+        android:layout_toStartOf="@+id/Title"
+        android:layout_marginRight="12dp"
+        android:layout_marginEnd="12dp" />
+
+    <Button
+        android:id="@+id/buttonStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="23dp"
+        android:text="Get Likes" />
+
+    <EditText
+        android:id="@+id/TextUrl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="url"
+        android:layout_alignBaseline="@+id/urlPhoto"
+        android:layout_alignBottom="@+id/urlPhoto"
+        android:layout_alignLeft="@+id/buttonStart"
+        android:layout_alignStart="@+id/buttonStart" />
+
+    <Spinner
+        android:id="@+id/spinnerNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="66dp"
+        android:layout_below="@+id/TextUrl"
+        android:layout_alignLeft="@+id/TextUrl"
+        android:layout_alignStart="@+id/TextUrl"
+        android:layout_alignRight="@+id/TextUrl"
+        android:layout_alignEnd="@+id/TextUrl" />
+
+    <TextView
+        android:id="@+id/TextNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/urlPhoto"
+        android:layout_alignStart="@+id/urlPhoto"
+        android:layout_alignTop="@+id/spinnerNumber"
+        android:text="TextView" />
+
+</RelativeLayout>
