@@ -18,13 +18,13 @@
         android:id="@+id/urlPhoto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="Paste URL"
         android:layout_below="@+id/Title"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="40dp"
         android:layout_toLeftOf="@+id/Title"
         android:layout_toStartOf="@+id/Title"
-        android:layout_marginRight="12dp"
-        android:layout_marginEnd="12dp" />
+        android:text="Paste URL" />
 
     <Button
         android:id="@+id/buttonStart"
@@ -39,32 +39,32 @@
         android:id="@+id/TextUrl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="url"
         android:layout_alignBaseline="@+id/urlPhoto"
         android:layout_alignBottom="@+id/urlPhoto"
         android:layout_alignLeft="@+id/buttonStart"
-        android:layout_alignStart="@+id/buttonStart" />
-
-    <Spinner
-        android:id="@+id/spinnerNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="66dp"
-        android:layout_below="@+id/TextUrl"
-        android:layout_alignLeft="@+id/TextUrl"
-        android:layout_alignStart="@+id/TextUrl"
-        android:layout_alignRight="@+id/TextUrl"
-        android:layout_alignEnd="@+id/TextUrl" />
+        android:layout_alignStart="@+id/buttonStart"
+        android:ems="10"
+        android:inputType="textPersonName" />
 
     <TextView
         android:id="@+id/TextNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/number"
+        android:layout_alignBottom="@+id/number"
         android:layout_alignLeft="@+id/urlPhoto"
         android:layout_alignStart="@+id/urlPhoto"
-        android:layout_alignTop="@+id/spinnerNumber"
-        android:text="TextView" />
+        android:text="How many likes?" />
+
+    <EditText
+        android:id="@+id/number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/TextUrl"
+        android:layout_alignRight="@+id/TextUrl"
+        android:layout_below="@+id/TextUrl"
+        android:layout_marginTop="65dp"
+        android:ems="10"
+        android:inputType="number" />
 
 </RelativeLayout>
