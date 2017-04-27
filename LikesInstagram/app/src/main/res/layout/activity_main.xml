@@ -9,7 +9,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -60,14 +61,13 @@
 
                     android:layout_marginLeft="15dp"
 
-                    android:text="How many likes?" />
+                    android:text="@string/how_many_likes" />
 
-                <EditText
-                    android:id="@+id/number"
-                    android:layout_width="200dp"
+                <Spinner
+                    android:id="@+id/spinnerNum"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="25dp"
-                    android:inputType="number" />
+                    android:layout_weight="1" />
 
             </LinearLayout>
 
@@ -85,7 +85,6 @@
                     android:id="@+id/textViewResult"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_centerHorizontal="true"
                     android:layout_marginLeft="125dp" />
 
             </LinearLayout>
@@ -107,7 +106,7 @@
                     android:layout_marginLeft="125dp"
 
                     android:background="@android:color/background_light"
-                    android:text="Get Likes"
+                    android:text="@string/get_likes"
                     android:textColor="@android:color/holo_red_light" />
             </LinearLayout>
 

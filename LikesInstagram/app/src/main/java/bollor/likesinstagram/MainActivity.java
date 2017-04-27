@@ -8,8 +8,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +35,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -41,7 +44,7 @@ import okhttp3.Response;
 public class MainActivity extends AppCompatActivity {
 
     EditText urlPhotoEdit;
-    EditText numEdit;
+    Spinner numEdit;
     Button start;
     BufferedReader in = null;
     String resultTot = "";
@@ -49,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     TextView textResult;
     ProgressDialog dialog;
     String URL;
-
+    ArrayList<Integer> numSpin = new ArrayList<Integer>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,13 +62,17 @@ public class MainActivity extends AppCompatActivity {
 
 
         urlPhotoEdit = (EditText) findViewById(R.id.TextUrl);
-        numEdit = (EditText) findViewById(R.id.number);
+        numEdit = (Spinner) findViewById(R.id.spinnerNum);
         start = (Button) findViewById(R.id.buttonStart);
         textNumber = (TextView) findViewById(R.id.TextNumber);
         textNumber.setText("How many likes?");
         textResult = (TextView) findViewById(R.id.textViewResult);
 
-
+        for (int i = 1; i <= 200; i++) {
+            numSpin.add(i);
+        }
+        ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_dropdown_item, numSpin);
+        numEdit.setAdapter(adapter);
     }
 //linea di prova gitaaaaaaaaaaaaaaaaaaaaaaa
 
@@ -77,7 +84,8 @@ public class MainActivity extends AppCompatActivity {
                     dialog = ProgressDialog.show(MainActivity.this, "Adding likes",
                             "loading...", true);
                     String urlPhoto = urlPhotoEdit.getText().toString();
-                    String num = numEdit.getText().toString();
+                    String num = numEdit.getSelectedItem().toString();
+
 
                     URL = "https://api.joinsta.com/v1/?link=" + urlPhoto + "&maxlikes=" + num + "";
                     startLike(URL);
@@ -102,11 +110,10 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
 
-            Request.Builder builder = new Request.Builder();
-            builder.url(params[0]);
-            Request request = builder.build();
-
             try {
+                Request.Builder builder = new Request.Builder();
+                builder.url(params[0]);
+                Request request = builder.build();
                 Response response = client.newCall(request).execute();
                 return response.body().string();
             } catch (Exception e) {
@@ -123,8 +130,6 @@ public class MainActivity extends AppCompatActivity {
             }
             textResult.setText(s);
             dialog.cancel();
-
-
         }
 
 
