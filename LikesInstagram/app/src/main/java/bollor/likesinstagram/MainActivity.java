@@ -59,6 +59,11 @@ public class MainActivity extends AppCompatActivity {
         textNumber.setText("How many likes?");
         textResult = (TextView) findViewById(R.id.textViewResult);
 
+
+    }
+
+    public void onStart() {
+        super.onStart();
         start.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 try {
@@ -70,14 +75,12 @@ public class MainActivity extends AppCompatActivity {
                     OkHttpHandler okHttpHandler = new OkHttpHandler();
                     okHttpHandler.execute(URL);
 
-                    //Toast.makeText(MainActivity.this, prova.toString(), Toast.LENGTH_LONG).show();
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         });
-
-
     }
 
     public class OkHttpHandler extends AsyncTask<String, Void, String> {
