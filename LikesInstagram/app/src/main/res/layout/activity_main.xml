@@ -4,67 +4,105 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/instbackground"
     tools:context="bollor.likesinstagram.MainActivity">
 
-    <TextView
-        android:id="@+id/Title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="InstaLike"
-        android:textSize="50dp" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
 
-    <TextView
-        android:id="@+id/urlPhoto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/Title"
-        android:layout_marginEnd="12dp"
-        android:layout_marginRight="12dp"
-        android:layout_marginTop="40dp"
-        android:layout_toLeftOf="@+id/Title"
-        android:layout_toStartOf="@+id/Title"
-        android:text="Paste URL" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="480dp"
+            android:layout_marginBottom="5dp">
 
-    <Button
-        android:id="@+id/buttonStart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="23dp"
-        android:text="Get Likes" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="150dp"
+                android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/TextUrl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/urlPhoto"
-        android:layout_alignBottom="@+id/urlPhoto"
-        android:layout_alignLeft="@+id/buttonStart"
-        android:layout_alignStart="@+id/buttonStart"
-        android:ems="10"
-        android:inputType="textPersonName" />
+                <TextView
+                    android:id="@+id/urlPhoto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_weight="1"
+                    android:text="Paste URL" />
 
-    <TextView
-        android:id="@+id/TextNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/number"
-        android:layout_alignBottom="@+id/number"
-        android:layout_alignLeft="@+id/urlPhoto"
-        android:layout_alignStart="@+id/urlPhoto"
-        android:text="How many likes?" />
+                <EditText
+                    android:id="@+id/TextUrl"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:inputType="textPersonName" />
 
-    <EditText
-        android:id="@+id/number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/TextUrl"
-        android:layout_alignRight="@+id/TextUrl"
-        android:layout_below="@+id/TextUrl"
-        android:layout_marginTop="65dp"
-        android:ems="10"
-        android:inputType="number" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="230dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/TextNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginLeft="15dp"
+                    android:layout_weight="1"
+                    android:text="How many likes?" />
+
+                <EditText
+                    android:id="@+id/number"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="25dp"
+                    android:layout_weight="1"
+                    android:inputType="number" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="350dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textViewResult"
+                    android:layout_width="wrap_content"
+                    android:layout_height="75dp"
+                    android:layout_centerHorizontal="true"
+                    android:text="provaprovprova" />
+
+                <Button
+                    android:id="@+id/buttonStart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Get Likes" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="46dp"
+                app:srcCompat="@drawable/instatitle" />
+
+
+        </RelativeLayout>
+
+
+    </ScrollView>
+
 
 </RelativeLayout>
