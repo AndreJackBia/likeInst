@@ -1,11 +1,13 @@
 package bollor.likesinstagram;
 
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -45,13 +47,17 @@ public class MainActivity extends AppCompatActivity {
     String resultTot = "";
     TextView textNumber;
     TextView textResult;
+    ProgressDialog dialog;
+    String URL;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toast.makeText(MainActivity.this, "ciao", Toast.LENGTH_SHORT).show();
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
+
         urlPhotoEdit = (EditText) findViewById(R.id.TextUrl);
         numEdit = (EditText) findViewById(R.id.number);
         start = (Button) findViewById(R.id.buttonStart);
@@ -67,13 +73,13 @@ public class MainActivity extends AppCompatActivity {
         start.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 try {
+                    dialog = ProgressDialog.show(MainActivity.this, "Adding likes",
+                            "loading...", true);
                     String urlPhoto = urlPhotoEdit.getText().toString();
                     String num = numEdit.getText().toString();
 
-                    String URL = "https://api.joinsta.com/v1/?link=" + urlPhoto + "&maxlikes=" + num + "";
-
-                    OkHttpHandler okHttpHandler = new OkHttpHandler();
-                    okHttpHandler.execute(URL);
+                    URL = "https://api.joinsta.com/v1/?link=" + urlPhoto + "&maxlikes=" + num + "";
+                    startLike(URL);
 
 
                 } catch (Exception e) {
@@ -81,6 +87,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void startLike(String URL) {
+        OkHttpHandler okHttpHandler = new OkHttpHandler();
+        okHttpHandler.execute(URL);
     }
 
     public class OkHttpHandler extends AsyncTask<String, Void, String> {
@@ -106,7 +117,15 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
+            if (s.equals("")) {
+                startLike(URL);
+            }
             textResult.setText(s);
+            dialog.cancel();
+
+
         }
+
+
     }
 }
