@@ -8,6 +8,7 @@
     tools:context="bollor.likesinstagram.MainActivity">
 
 
+
     <TextView
         android:id="@+id/urlPhoto"
         android:layout_width="120dp"
@@ -86,6 +87,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="46dp"
         app:srcCompat="@drawable/instatitle" />
+
 
 
 </RelativeLayout>
