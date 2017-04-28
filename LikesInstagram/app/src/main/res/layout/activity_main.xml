@@ -8,6 +8,7 @@
     tools:context="bollor.likesinstagram.MainActivity">
 
 
+
     <TextView
         android:id="@+id/urlPhoto"
         android:layout_width="120dp"
@@ -36,46 +37,39 @@
         android:id="@+id/TextNumber"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/number"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="7dp"
         android:text="How many likes?"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textColor="@android:color/background_dark"
-        android:textSize="16sp" />
-
-    <EditText
-        android:id="@+id/number"
-        android:layout_width="200dp"
-        android:layout_height="40dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/TextUrl"
-        android:layout_marginTop="100dp"
-        android:inputType="number"
-        android:textColor="@android:color/darker_gray" />
+        android:textSize="16sp"
+        android:layout_alignBottom="@+id/spinnerNum"
+        android:layout_alignLeft="@+id/textViewResult"
+        android:layout_alignStart="@+id/textViewResult"
+        android:layout_marginStart="7dp" />
 
 
     <TextView
         android:id="@+id/textViewResult"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/number"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="75dp"
         android:textColor="@android:color/black"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:layout_marginBottom="26dp"
+        android:layout_above="@+id/buttonStart"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 
     <Button
         android:id="@+id/buttonStart"
         android:layout_width="100dp"
         android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="75dp"
+        android:layout_marginBottom="52dp"
         android:background="@drawable/instbackground"
         android:text="Get Likes"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
 
     <ImageView
@@ -86,6 +80,15 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="46dp"
         app:srcCompat="@drawable/instatitle" />
+
+    <Spinner
+        android:id="@+id/spinnerNum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/TextUrl"
+        android:layout_marginTop="97dp"
+        android:layout_alignLeft="@+id/TextUrl"
+        android:layout_alignStart="@+id/TextUrl" />
 
 
 </RelativeLayout>

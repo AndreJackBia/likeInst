@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">LikesInstagram</string>
+    <string name="get_likes">Get Likes</string>
+    <string name="how_many_likes">How many likes?</string>
 </resources>
