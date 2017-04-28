@@ -5,11 +5,15 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -42,7 +46,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NumberPicker.OnValueChangeListener {
 
     EditText urlPhotoEdit;
     Spinner numEdit;
@@ -51,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
     TextView textResult;
     ProgressDialog dialog;
     String URL;
+    WebView webView;
+    int check = 0;
 
     ArrayList<Integer> numSpin = new ArrayList<Integer>();
 
@@ -68,18 +74,30 @@ public class MainActivity extends AppCompatActivity {
         textNumber = (TextView) findViewById(R.id.TextNumber);
         textNumber.setText("How many likes?");
         textResult = (TextView) findViewById(R.id.textViewResult);
+        webView = (WebView) findViewById(R.id.webView);
 
 
         for (int i = 1; i <= 200; i++) {
             numSpin.add(i);
         }
-        ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_dropdown_item, numSpin);
+        ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, numSpin);
         numEdit.setAdapter(adapter);
 
     }
 
     public void onStart() {
         super.onStart();
+        urlPhotoEdit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    Toast.makeText(getApplicationContext(), "got the focus", Toast.LENGTH_LONG).show();
+                    webView.getSettings().setJavaScriptEnabled(true);
+                    webView.loadUrl(urlPhotoEdit.getText().toString());
+                    webView.getSettings().setPluginState(WebSettings.PluginState.OFF);
+                }
+            }
+        });
         start.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 try {
@@ -106,8 +124,14 @@ public class MainActivity extends AppCompatActivity {
         okHttpHandler.execute(URL);
     }
 
-    public class OkHttpHandler extends AsyncTask<String, Void, String> {
+    @Override
+    public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
 
+    }
+
+
+    public class OkHttpHandler extends AsyncTask<String, Void, String> {
+        int i = 0;
         OkHttpClient client = new OkHttpClient();
 
         @Override
@@ -134,13 +158,19 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "ritorna null", Toast.LENGTH_SHORT).show();
                     startLike(URL);
                 } else if (s.equals("done")) {
-                    Toast.makeText(MainActivity.this, "ritorna done", Toast.LENGTH_SHORT).show();
-                    startLike(URL);
-                } else if (s.equals("finish")){
 
+                    i++;
+                    Toast.makeText(MainActivity.this, "ritorna done", Toast.LENGTH_SHORT).show();
+                    if (i == 7) {
+                        textResult.setText("The server failed during fulfilling the request, please retry later.");
+                        dialog.cancel();
+
+                    }
+                    startLike(URL);
+                } else if (s.equals("finish")) {
                     textResult.setText(s);
                     dialog.cancel();
-                } else{
+                } else {
                     textResult.setText(s);
                 }
 
