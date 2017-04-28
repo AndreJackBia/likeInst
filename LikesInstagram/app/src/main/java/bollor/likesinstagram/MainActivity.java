@@ -125,11 +125,25 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            if (s.equals("")) {
-                startLike(URL);
+            try {
+                if (s == null) {
+                    Toast.makeText(MainActivity.this, "ritorna null", Toast.LENGTH_SHORT).show();
+                    startLike(URL);
+                } else if (s.equals("done")) {
+                    Toast.makeText(MainActivity.this, "ritorna done", Toast.LENGTH_SHORT).show();
+                    startLike(URL);
+                } else if (s.equals("finish")){
+
+                    textResult.setText(s);
+                    dialog.cancel();
+                } else{
+                    textResult.setText(s);
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            textResult.setText(s);
-            dialog.cancel();
+
         }
 
 
