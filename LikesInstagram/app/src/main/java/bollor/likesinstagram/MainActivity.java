@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements NumberPicker.OnVa
         webView = (WebView) findViewById(R.id.webView);
 
 
-        for (int i = 1; i <= 200; i++) {
+        for (int i = 10; i <= 200; i=+10) {
             numSpin.add(i);
         }
         ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, numSpin);
@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements NumberPicker.OnVa
                     Toast.makeText(getApplicationContext(), "got the focus", Toast.LENGTH_LONG).show();
                     webView.getSettings().setJavaScriptEnabled(true);
                     webView.loadUrl(urlPhotoEdit.getText().toString());
-                    webView.getSettings().setPluginState(WebSettings.PluginState.OFF);
+
                 }
             }
         });
