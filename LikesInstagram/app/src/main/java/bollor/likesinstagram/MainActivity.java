@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements NumberPicker.OnVa
     ProgressDialog dialog;
     String URL;
     WebView webView;
-    int check = 0;
+
 
     ArrayList<Integer> numSpin = new ArrayList<Integer>();
 
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements NumberPicker.OnVa
         webView = (WebView) findViewById(R.id.webView);
 
 
-        for (int i = 10; i <= 200; i=+10) {
+        for (int i = 10; i <= 200; i=i+10) {
             numSpin.add(i);
         }
         ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, numSpin);
