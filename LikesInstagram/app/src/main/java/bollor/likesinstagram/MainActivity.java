@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     EditText urlPhotoEdit;
     Spinner numEdit;
     Button start;
+    Button buttonHashtag;
     TextView textNumber;
     TextView textResult;
     ProgressDialog dialog;
@@ -65,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         urlPhotoEdit = (EditText) findViewById(R.id.TextUrl);
         numEdit = (Spinner) findViewById(R.id.spinnerNum);
         start = (Button) findViewById(R.id.buttonStart);
+        buttonHashtag = (Button) findViewById(R.id.buttonHashtag);
         textNumber = (TextView) findViewById(R.id.TextNumber);
         textNumber.setText("How many likes?");
         textResult = (TextView) findViewById(R.id.textViewResult);
@@ -136,11 +138,11 @@ public class MainActivity extends AppCompatActivity {
                 } else if (s.equals("done")) {
                     Toast.makeText(MainActivity.this, "ritorna done", Toast.LENGTH_SHORT).show();
                     startLike(URL);
-                } else if (s.equals("finish")){
+                } else if (s.equals("finish")) {
 
                     textResult.setText(s);
                     dialog.cancel();
-                } else{
+                } else {
                     textResult.setText(s);
                 }
 
@@ -150,5 +152,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         }
+    }
+
+    public void GoToHashtag(View view) {
+        Intent intent = new Intent(this, HashTagActivity.class);
+        startActivity(intent);
     }
 }

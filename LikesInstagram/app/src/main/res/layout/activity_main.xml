@@ -90,5 +90,15 @@
         android:layout_alignLeft="@+id/TextUrl"
         android:layout_alignStart="@+id/TextUrl" />
 
+    <Button
+        android:id="@+id/buttonHashtag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/buttonStart"
+        android:layout_toEndOf="@+id/buttonStart"
+        android:layout_toRightOf="@+id/buttonStart"
+        android:onClick="GoToHashtag"
+        android:text="Hashtag" />
+
 
 </RelativeLayout>
