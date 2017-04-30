@@ -8,7 +8,10 @@
     tools:context="bollor.likesinstagram.MainActivity">
 <ScrollView
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -104,19 +107,19 @@
             android:background="@drawable/instbackground"
             android:text="Get Likes"
             android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/buttonHashtag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewResult"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="52dp"
+            android:onClick="GoToHashtag"
+            android:text="Hashtag" />
     </RelativeLayout>
 
 </ScrollView>
-
-    <Button
-        android:id="@+id/buttonHashtag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/buttonStart"
-        android:layout_toEndOf="@+id/buttonStart"
-        android:layout_toRightOf="@+id/buttonStart"
-        android:onClick="GoToHashtag"
-        android:text="Hashtag" />
 
 
 </RelativeLayout>
