@@ -56,10 +56,19 @@ public class MainActivity extends AppCompatActivity implements NumberPicker.OnVa
     ProgressDialog dialog;
     String URL;
     WebView webView;
+    int count;
 
 
     ArrayList<Integer> numSpin = new ArrayList<Integer>();
 
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = (count + 1) + getCount();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements NumberPicker.OnVa
         webView = (WebView) findViewById(R.id.webView);
 
 
-        for (int i = 10; i <= 200; i=i+10) {
+        for (int i = 10; i <= 200; i = i + 10) {
             numSpin.add(i);
         }
         ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, numSpin);
@@ -131,7 +140,7 @@ public class MainActivity extends AppCompatActivity implements NumberPicker.OnVa
 
 
     public class OkHttpHandler extends AsyncTask<String, Void, String> {
-        int i = 0;
+
         OkHttpClient client = new OkHttpClient();
 
         @Override
@@ -159,14 +168,16 @@ public class MainActivity extends AppCompatActivity implements NumberPicker.OnVa
                     startLike(URL);
                 } else if (s.equals("done")) {
 
-                    i++;
-                    Toast.makeText(MainActivity.this, "ritorna done", Toast.LENGTH_SHORT).show();
-                    if (i == 7) {
+                    setCount(0);
+                    if (getCount() == 8) {
                         textResult.setText("The server failed during fulfilling the request, please retry later.");
                         dialog.cancel();
 
+                    } else {
+                        Toast.makeText(MainActivity.this, "ritorna done", Toast.LENGTH_SHORT).show();
+                        startLike(URL);
                     }
-                    startLike(URL);
+
                 } else if (s.equals("finish")) {
                     textResult.setText(s);
                     dialog.cancel();
