@@ -9,7 +9,10 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -119,6 +122,16 @@
                 android:background="@drawable/instbackground"
                 android:onClick="GoToHashtag"
                 android:text="Go to Hashtag" />
+            <Button
+                android:id="@+id/buttonInstagram"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_below="@+id/buttonHashtag"
+                android:layout_toEndOf="@+id/TextNumber"
+                android:layout_toRightOf="@+id/TextNumber"
+                android:background="@drawable/instbackground"
+                android:onClick="GoToInstagram"
+                android:text="Go to Instagram" />
         </RelativeLayout>
 
 

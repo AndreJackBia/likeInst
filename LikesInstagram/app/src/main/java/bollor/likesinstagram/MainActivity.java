@@ -1,10 +1,14 @@
 package bollor.likesinstagram;
 
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.webkit.WebView;
@@ -35,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements NumberPicker.OnVa
     ProgressDialog dialog;
     String URL;
     WebView webView;
+    Button buttonInstagram;
     int count;
 
 
@@ -60,6 +65,8 @@ public class MainActivity extends AppCompatActivity implements NumberPicker.OnVa
         numEdit = (Spinner) findViewById(R.id.spinnerNum);
         start = (Button) findViewById(R.id.buttonStart);
         buttonHashtag = (Button) findViewById(R.id.buttonHashtag);
+        buttonInstagram = (Button) findViewById(R.id.buttonInstagram);
+
         textNumber = (TextView) findViewById(R.id.TextNumber);
         textNumber.setText("How many likes?");
         textResult = (TextView) findViewById(R.id.textViewResult);
@@ -181,5 +188,19 @@ public class MainActivity extends AppCompatActivity implements NumberPicker.OnVa
     public void GoToHashtag(View view) {
         Intent intent = new Intent(this, HashTagActivity.class);
         startActivity(intent);
+    }
+
+    public void GoToInstagram(View view) {
+        Uri uri = Uri.parse("http://instagram.com/_u/");
+        Intent likeIng = new Intent(Intent.ACTION_VIEW, uri);
+
+        likeIng.setPackage("com.instagram.android");
+
+        try {
+            startActivity(likeIng);
+        } catch (ActivityNotFoundException e) {
+            startActivity(new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("http://instagram.com/")));
+        }
     }
 }
