@@ -185,6 +185,8 @@ public class MainActivity extends AppCompatActivity implements NumberPicker.OnVa
                 } else if (s.equals("finish")) {
                     textResult.setText(s);
                     dialog.cancel();
+                } else if (s.equals("empty")) {
+                    textResult.setText(s);
                 } else {
                     textResult.setText(s);
                 }
