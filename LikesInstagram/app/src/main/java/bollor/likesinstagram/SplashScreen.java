@@ -22,7 +22,7 @@ public class SplashScreen extends AppCompatActivity {
         setContentView(R.layout.activity_splashscreen);
 
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-        final Intent intent = new Intent(this, MainActivity.class);
+        final Intent intent = new Intent(this, MainActivityTab.class);
 
         new Handler().postDelayed(new Runnable() {
             @Override
