@@ -4,122 +4,119 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+
+
     tools:context="bollor.likesinstagram.MainActivity">
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_alignParentTop="true"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="true">
-    <RelativeLayout
+
+
+    <ScrollView
+
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-
-            android:layout_marginTop="15dp"
-            app:srcCompat="@drawable/instatitle" />
-
-        <TextView
-            android:id="@+id/urlPhoto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/imageView2"
-            android:layout_marginTop="45dp"
-            android:layout_toLeftOf="@+id/imageView2"
-            android:layout_toStartOf="@+id/imageView2"
-            android:textSize="16sp"
-            android:text="Paste URL"
-            android:textAppearance="@style/TextAppearance.AppCompat"
-            android:textColor="@android:color/background_dark" />
-
-        <EditText
-            android:id="@+id/TextUrl"
-            android:layout_width="175dp"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/spinnerNum"
-            android:inputType="textPersonName"
-            android:layout_alignLeft="@+id/spinnerNum"
-            android:layout_alignStart="@+id/spinnerNum"
-            android:layout_alignBottom="@id/urlPhoto"
-            android:layout_marginRight="5dp"
-            android:layout_toRightOf="@id/urlPhoto"
-            android:textColor="@android:color/darker_gray" />
-
-
-        <TextView
-            android:id="@+id/TextNumber"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/urlPhoto"
-            android:layout_alignStart="@+id/urlPhoto"
-            android:layout_below="@+id/urlPhoto"
-            android:layout_marginTop="20dp"
-            android:text="How many likes?"
-            android:textAppearance="@style/TextAppearance.AppCompat"
-            android:textColor="@android:color/background_dark"
-            android:textSize="16sp" />
-
-        <Spinner
-            android:id="@+id/spinnerNum"
-            android:layout_width="175dp"
-            android:layout_height="20dp"
-
-            android:layout_alignBottom="@id/TextNumber"
-            android:layout_alignTop="@id/TextNumber"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="5dp"
-            android:layout_toRightOf="@id/TextNumber" />
-
-        <WebView
-            android:id="@+id/webView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/spinnerNum"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="35dp"
-            android:layout_marginRight="35dp"
-            android:layout_marginTop="10dp" />
-
-        <TextView
-            android:id="@+id/textViewResult"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/webView"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="35dp"
-            android:textColor="@android:color/black"
-            android:textSize="16sp" />
 
-        <Button
-            android:id="@+id/buttonStart"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:layout_below="@id/textViewResult"
-            android:layout_centerHorizontal="true"
+            android:layout_height="match_parent"
+            android:background="@drawable/blur_background04">
 
-            android:layout_marginBottom="35dp"
-            android:background="@drawable/instbackground"
-            android:text="Get Likes"
-            android:textColor="@android:color/white" />
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
 
-        <Button
-            android:id="@+id/buttonHashtag"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textViewResult"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="52dp"
-            android:onClick="GoToHashtag"
-            android:text="Hashtag" />
-    </RelativeLayout>
+                android:layout_marginTop="15dp"
+                app:srcCompat="@drawable/instatitle" />
 
-</ScrollView>
+            <TextView
+                android:id="@+id/urlPhoto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageView2"
+                android:layout_marginTop="45dp"
+                android:layout_toLeftOf="@+id/imageView2"
+                android:layout_toStartOf="@+id/imageView2"
+                android:text="Paste URL"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textColor="@android:color/background_dark"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/TextUrl"
+                android:layout_width="175dp"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/spinnerNum"
+                android:layout_alignBottom="@id/urlPhoto"
+                android:layout_alignLeft="@+id/spinnerNum"
+                android:layout_alignStart="@+id/spinnerNum"
+                android:layout_marginRight="5dp"
+                android:layout_toRightOf="@id/urlPhoto"
+                android:inputType="textPersonName"
+                android:textColor="@android:color/black"
+                android:textColorLink="@android:color/black" />
+
+
+            <TextView
+                android:id="@+id/TextNumber"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/urlPhoto"
+                android:layout_alignStart="@+id/urlPhoto"
+                android:layout_below="@+id/urlPhoto"
+                android:layout_marginTop="20dp"
+                android:text="How many likes?"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textColor="@android:color/background_dark"
+                android:textSize="16sp" />
+
+            <Spinner
+                android:id="@+id/spinnerNum"
+                android:layout_width="175dp"
+                android:layout_height="20dp"
+
+                android:layout_alignBottom="@id/TextNumber"
+                android:layout_alignTop="@id/TextNumber"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="5dp"
+                android:layout_toRightOf="@id/TextNumber"
+                android:backgroundTint="@android:color/black" />
+
+            <WebView
+                android:id="@+id/webView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/spinnerNum"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="35dp"
+                android:layout_marginRight="35dp"
+                android:layout_marginTop="10dp" />
+
+            <TextView
+                android:id="@+id/textViewResult"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/webView"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="35dp"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/buttonStart"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_below="@id/textViewResult"
+                android:layout_centerHorizontal="true"
+
+                android:layout_marginBottom="35dp"
+                android:background="@drawable/instbackground"
+                android:text="Get Likes"
+                android:textColor="@android:color/white" />
+        </RelativeLayout>
+
+    </ScrollView>
+
 
 
 </RelativeLayout>
