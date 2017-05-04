@@ -11,6 +11,7 @@ import android.webkit.WebView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,7 +26,7 @@ import okhttp3.Response;
 public class TwoFragment extends Fragment {
 
     EditText urlPhotoEdit;
-    Spinner numEdit;
+    int numEdit;
     TextView textNumber;
     TextView textResult;
     ProgressDialog dialog;
@@ -33,8 +34,8 @@ public class TwoFragment extends Fragment {
     WebView webView;
     int count;
     private Button start;
-    ArrayList<Integer> numSpin = new ArrayList<Integer>();
-
+    NumberPicker np;
+    String[] numSpin = new String[20];
 
 
     public TwoFragment() {
@@ -51,22 +52,47 @@ public class TwoFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_two, container, false);
         urlPhotoEdit = (EditText) view.findViewById(R.id.TextUrl);
-        numEdit = (Spinner) view.findViewById(R.id.spinnerNum);
         textNumber = (TextView) view.findViewById(R.id.TextNumber);
         textResult = (TextView) view.findViewById(R.id.textViewResult);
         webView = (WebView) view.findViewById(R.id.webView);
         start = (Button) view.findViewById(R.id.buttonStart);
+        np = (NumberPicker) view.findViewById(R.id.numberPicker);
 
-        for (int i = 10; i <= 200; i = i + 10) {
-            numSpin.add(i);
-        }
-        ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(getActivity(), android.R.layout.simple_spinner_item, numSpin);
-        numEdit.setAdapter(adapter);
 
         return view;
     }
+
     public void onStart() {
         super.onStart();
+
+        int j = 0;
+        for (int i = 10; i <= 200; i = i + 10) {
+
+            numSpin[j] = String.valueOf(i);
+            j++;
+        }
+        final String[] ns = numSpin;
+        // Objects[] picker = (Objects[]) numSpin.toArray();
+
+        np.setMinValue(1);
+        //Specify the maximum value/number of NumberPicker
+        np.setMaxValue(20);
+        np.setDisplayedValues(ns);
+        // np.setDisplayedValues(new String []{"3","4","12"});
+
+        //Gets whether the selector wheel wraps when reaching the min/max value.
+        np.setWrapSelectorWheel(true);
+
+        //Set a value change listener for NumberPicker
+        np.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+                //Display the newly selected number from picker
+                //textResult.setText("Selected Number : " + newVal);
+                numEdit = newVal * 10;
+            }
+        });
+
         urlPhotoEdit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -84,7 +110,7 @@ public class TwoFragment extends Fragment {
                     dialog = ProgressDialog.show(getActivity(), "Adding likes",
                             "loading...", true);
                     String urlPhoto = urlPhotoEdit.getText().toString();
-                    String num = numEdit.getSelectedItem().toString();
+                    String num = String.valueOf(numEdit);
 
 
                     URL = "https://api.joinsta.com/v1/?link=" + urlPhoto + "&maxlikes=" + num + "";
@@ -108,7 +134,7 @@ public class TwoFragment extends Fragment {
     }
 
     public void setCount(int count) {
-        this.count = (count + 1) + getCount();
+        this.count = count;
     }
 
     public class OkHttpHandler extends AsyncTask<String, Void, String> {
@@ -140,24 +166,25 @@ public class TwoFragment extends Fragment {
                     startLike(URL);
                 } else if (s.equals("done")) {
 
-                    setCount(0);
+                    setCount(getCount()+1);
                     if (getCount() == 8) {
                         textResult.setText("The server failed during fulfilling the request, please retry later.");
                         dialog.cancel();
-
-
+                        setCount(0);
                     } else {
                         Toast.makeText(getActivity(), "ritorna done", Toast.LENGTH_SHORT).show();
                         startLike(URL);
-
                     }
-
                 } else if (s.equals("finish")) {
-                     textResult.setText(s);
+                    textResult.setText(s);
                     dialog.cancel();
                 } else if (s.equals("empty")) {
-                     textResult.setText("Please insert link");
+                    textResult.setText("Please insert link");
                     dialog.cancel();
+                } else if (s.equals("error link")) {
+                    textResult.setText(s);
+                    dialog.cancel();
+
                 } else {
                     textResult.setText(s);
                 }
