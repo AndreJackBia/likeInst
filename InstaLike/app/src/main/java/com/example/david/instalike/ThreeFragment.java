@@ -8,9 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 
 public class ThreeFragment extends Fragment {
-
+    private static final String TAG = "ThreeFragment";
+    private AdView mAdView;
     public ThreeFragment() {
         // Required empty public constructor
     }
@@ -28,7 +32,9 @@ public class ThreeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_three, container, false);
         TextView t1 = (TextView) view.findViewById(R.id.textInfo2);
         t1.setMovementMethod(LinkMovementMethod.getInstance());
-
+        mAdView = (AdView) view.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
         TextView t2 = (TextView) view.findViewById(R.id.textInfo4);
         t2.setMovementMethod(LinkMovementMethod.getInstance());
 

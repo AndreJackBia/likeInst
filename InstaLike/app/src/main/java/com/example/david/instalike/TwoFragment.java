@@ -17,6 +17,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+
 import java.util.ArrayList;
 
 import okhttp3.OkHttpClient;
@@ -36,7 +41,9 @@ public class TwoFragment extends Fragment {
     private Button start;
     NumberPicker np;
     String[] numSpin = new String[20];
-
+    private static final String TAG = "TwoFragment";
+    private AdView mAdView;
+    InterstitialAd mInterstitialAd;
 
     public TwoFragment() {
         // Required empty public constructor
@@ -57,8 +64,28 @@ public class TwoFragment extends Fragment {
         webView = (WebView) view.findViewById(R.id.webView);
         start = (Button) view.findViewById(R.id.buttonStart);
         np = (NumberPicker) view.findViewById(R.id.numberPicker);
+        mAdView = (AdView) view.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+        mInterstitialAd = new InterstitialAd(getActivity());
+        mInterstitialAd.setAdUnitId("ca-app-pub-8190889007212102/9446204873");
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdClosed() {
+                requestNewInterstitial();
+                textResult.setText("");
+                dialog = ProgressDialog.show(getActivity(), "Adding likes",
+                        "loading...", true);
+                String urlPhoto = urlPhotoEdit.getText().toString();
+                String num = String.valueOf(numEdit);
 
 
+                URL = "https://api.joinsta.com/v1/?link=" + urlPhoto + "&maxlikes=" + num + "";
+                startLike(URL);
+            }
+        });
+
+        requestNewInterstitial();
         return view;
     }
 
@@ -108,16 +135,19 @@ public class TwoFragment extends Fragment {
         start.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 try {
-                    textResult.setText("");
-                    dialog = ProgressDialog.show(getActivity(), "Adding likes",
-                            "loading...", true);
-                    String urlPhoto = urlPhotoEdit.getText().toString();
-                    String num = String.valueOf(numEdit);
+                    if (mInterstitialAd.isLoaded()) {
+                        mInterstitialAd.show();
+                    } else {
+                        textResult.setText("");
+                        dialog = ProgressDialog.show(getActivity(), "Adding likes",
+                                "loading...", true);
+                        String urlPhoto = urlPhotoEdit.getText().toString();
+                        String num = String.valueOf(numEdit);
 
 
-                    URL = "https://api.joinsta.com/v1/?link=" + urlPhoto + "&maxlikes=" + num + "";
-                    startLike(URL);
-
+                        URL = "https://api.joinsta.com/v1/?link=" + urlPhoto + "&maxlikes=" + num + "";
+                        startLike(URL);
+                    }
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -129,6 +159,14 @@ public class TwoFragment extends Fragment {
     private void startLike(String URL) {
         TwoFragment.OkHttpHandler okHttpHandler = new TwoFragment.OkHttpHandler();
         okHttpHandler.execute(URL);
+    }
+
+    private void requestNewInterstitial() {
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice("SEE_YOUR_LOGCAT_TO_GET_YOUR_DEVICE_ID")
+                .build();
+
+        mInterstitialAd.loadAd(adRequest);
     }
 
     public int getCount() {

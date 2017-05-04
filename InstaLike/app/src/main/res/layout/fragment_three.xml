@@ -2,13 +2,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.david.instalike.ThreeFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/TextUrl"
+            android:layout_centerHorizontal="true"
+            ads:adSize="BANNER"
+            ads:adUnitId="@string/banner_ad_unit_idthree"></com.google.android.gms.ads.AdView>
         <TextView
             android:id="@+id/textInfo1"
             android:layout_width="wrap_content"
@@ -99,10 +107,11 @@
             android:id="@+id/imageInfo"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginTop="42dp"
+            android:layout_marginTop="16dp"
             android:src="@drawable/info"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_below="@+id/adView"
+            android:layout_toRightOf="@+id/textInfo6"
+            android:layout_toEndOf="@+id/textInfo6" />
 
 
     </RelativeLayout>

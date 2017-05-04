@@ -6,5 +6,8 @@
     <string name="linktosite"> <a href="www.joinsta.com">Joinsta.com</a></string>
     <string name="linktositeAPI"> <a href="www.joinsta.com">Joinsta API</a></string>
     <string name="linktositeNORMAL"> <a href="www.joinsta.com">Joinsta</a></string>
+    <string name="banner_ad_unit_idtwo">ca-app-pub-8190889007212102/4795679273</string>
+    <string name="banner_ad_unit_idone"> ca-app-pub-8190889007212102/2481341278</string>
+    <string name="banner_ad_unit_idthree">ca-app-pub-8190889007212102/6771940074</string>
 
 </resources>
