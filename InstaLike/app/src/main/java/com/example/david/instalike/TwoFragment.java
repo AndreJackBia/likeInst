@@ -1,9 +1,12 @@
 package com.example.david.instalike;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,15 +76,27 @@ public class TwoFragment extends Fragment {
             @Override
             public void onAdClosed() {
                 requestNewInterstitial();
-                textResult.setText("");
-                dialog = ProgressDialog.show(getActivity(), "Adding likes",
-                        "loading...", true);
+
                 String urlPhoto = urlPhotoEdit.getText().toString();
-                String num = String.valueOf(numEdit);
-
-
-                URL = "https://api.joinsta.com/v1/?link=" + urlPhoto + "&maxlikes=" + num + "";
-                startLike(URL);
+                if (!urlPhoto.contains("instagram")) {
+                    new AlertDialog.Builder(getActivity())
+                            .setTitle("Wrong Input")
+                            .setMessage("You inserted an invalid URL")
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    urlPhotoEdit.setText("");
+                                }
+                            })
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
+                } else {
+                    String num = String.valueOf(numEdit);
+                    textResult.setText("");
+                    dialog = ProgressDialog.show(getActivity(), "Adding likes",
+                            "loading...", true);
+                    URL = "https://api.joinsta.com/v1/?link=" + urlPhoto + "&maxlikes=" + num + "";
+                    startLike(URL);
+                }
             }
         });
 
@@ -138,15 +153,26 @@ public class TwoFragment extends Fragment {
                     if (mInterstitialAd.isLoaded()) {
                         mInterstitialAd.show();
                     } else {
-                        textResult.setText("");
-                        dialog = ProgressDialog.show(getActivity(), "Adding likes",
-                                "loading...", true);
                         String urlPhoto = urlPhotoEdit.getText().toString();
-                        String num = String.valueOf(numEdit);
-
-
-                        URL = "https://api.joinsta.com/v1/?link=" + urlPhoto + "&maxlikes=" + num + "";
-                        startLike(URL);
+                        if (!urlPhoto.contains("instagram")) {
+                            new AlertDialog.Builder(getActivity())
+                                    .setTitle("Wrong Input")
+                                    .setMessage("You inserted an invalid URL")
+                                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            urlPhotoEdit.setText("");
+                                        }
+                                    })
+                                    .setIcon(android.R.drawable.ic_dialog_alert)
+                                    .show();
+                        } else {
+                            textResult.setText("");
+                            dialog = ProgressDialog.show(getActivity(), "Adding likes",
+                                    "loading...", true);
+                            String num = String.valueOf(numEdit);
+                            URL = "https://api.joinsta.com/v1/?link=" + urlPhoto + "&maxlikes=" + num + "";
+                            startLike(URL);
+                        }
                     }
 
                 } catch (Exception e) {
@@ -177,6 +203,16 @@ public class TwoFragment extends Fragment {
         this.count = count;
     }
 
+    int countNull;
+
+    public int getCountNull() {
+        return countNull;
+    }
+
+    public void setCountNull(int countNull) {
+        this.countNull = countNull;
+    }
+
     public class OkHttpHandler extends AsyncTask<String, Void, String> {
 
         OkHttpClient client = new OkHttpClient();
@@ -202,12 +238,18 @@ public class TwoFragment extends Fragment {
 
             try {
                 if (s == null) {
+                    setCountNull(getCountNull()+1);
+                    if(getCountNull()==10){
+                        textResult.setText("The server failed during fulfilling the request, please retry later.");
+                        dialog.cancel();
+                        setCountNull(0);
+                    }
                     Toast.makeText(getActivity(), "ritorna null", Toast.LENGTH_SHORT).show();
                     startLike(URL);
                 } else if (s.equals("done")) {
 
                     setCount(getCount() + 1);
-                    if (getCount() == 8) {
+                    if (getCount() == 10) {
                         textResult.setText("The server failed during fulfilling the request, please retry later.");
                         dialog.cancel();
                         setCount(0);

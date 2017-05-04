@@ -101,6 +101,7 @@
             android:layout_marginRight="16dp"
             android:layout_marginTop="127dp"
             android:text="Using the joinsta API, you allow to receive information about you or the server from which requests are made (namely IP-addresses, user agent, your age, sex, address of residence, breast size)."
+            android:textAlignment="center"
             android:textColor="@android:color/black" />
 
         <ImageView
