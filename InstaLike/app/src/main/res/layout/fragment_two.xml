@@ -100,7 +100,7 @@
                 android:id="@+id/webView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/linearlayout1"
+                android:layout_below="@+id/buttonStart"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="20sp"
                 android:layout_marginRight="20sp"
@@ -120,15 +120,12 @@
                 android:id="@+id/buttonStart"
                 android:layout_width="100sp"
                 android:layout_height="50sp"
-                android:layout_below="@+id/textViewResult"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="13sp"
-                android:layout_marginEnd="13sp"
-                android:layout_marginRight="13sp"
-                android:layout_marginTop="20sp"
                 android:background="@drawable/instbackground"
                 android:text="Get Likes"
-                android:textColor="@android:color/white" />
+                android:layout_marginTop="25dp"
+                android:textColor="@android:color/white"
+                android:layout_below="@+id/linearlayout1"
+                android:layout_centerHorizontal="true" />
         </RelativeLayout>
 
 
