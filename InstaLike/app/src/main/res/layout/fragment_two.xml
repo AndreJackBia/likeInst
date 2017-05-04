@@ -14,13 +14,18 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+            <LinearLayout
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layout_width="0px"
+                android:layout_height="0px"/>
 
             <ImageView
                 android:id="@+id/imageView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="15sp"
                 android:src="@drawable/instatitle" />
 
             <TextView
@@ -31,7 +36,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/imageView2"
                 android:layout_marginLeft="15sp"
-                android:layout_marginTop="39dp"
+                android:layout_marginTop="39sp"
                 android:text="Paste URL"
                 android:textAppearance="@style/TextAppearance.AppCompat"
                 android:textColor="@android:color/background_dark"
@@ -39,13 +44,14 @@
 
             <EditText
                 android:id="@+id/TextUrl"
-                android:layout_width="175sp"
+                android:layout_width="185sp"
                 android:layout_height="wrap_content"
 
-                android:layout_alignLeft="@+id/webView"
-                android:layout_alignStart="@+id/webView"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
                 android:layout_alignTop="@+id/urlPhoto"
-                android:layout_marginStart="150sp"
+                android:layout_marginEnd="15sp"
+                android:layout_marginRight="15sp"
                 android:background="@android:color/transparent"
                 android:backgroundTint="@android:color/black"
                 android:inputType="textPersonName"
@@ -83,7 +89,7 @@
                     android:layout_height="100sp"
 
                     android:layout_alignTop="@id/TextNumber"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginLeft="30sp"
                     android:layout_marginRight="15sp"
                     android:layout_toRightOf="@id/TextNumber"
                     android:layout_weight="1" />
@@ -112,14 +118,14 @@
 
             <Button
                 android:id="@+id/buttonStart"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
+                android:layout_width="100sp"
+                android:layout_height="50sp"
                 android:layout_below="@+id/textViewResult"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="13sp"
                 android:layout_marginEnd="13sp"
                 android:layout_marginRight="13sp"
-                android:layout_marginTop="28sp"
+                android:layout_marginTop="20sp"
                 android:background="@drawable/instbackground"
                 android:text="Get Likes"
                 android:textColor="@android:color/white" />

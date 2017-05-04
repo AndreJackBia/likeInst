@@ -90,7 +90,7 @@ public class TwoFragment extends Fragment {
                 //Display the newly selected number from picker
                 //textResult.setText("Selected Number : " + newVal);
                 numEdit = newVal * 10;
-                
+
             }
         });
 
