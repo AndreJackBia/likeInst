@@ -90,6 +90,7 @@ public class TwoFragment extends Fragment {
                 //Display the newly selected number from picker
                 //textResult.setText("Selected Number : " + newVal);
                 numEdit = newVal * 10;
+                
             }
         });
 
@@ -107,6 +108,7 @@ public class TwoFragment extends Fragment {
         start.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 try {
+                    textResult.setText("");
                     dialog = ProgressDialog.show(getActivity(), "Adding likes",
                             "loading...", true);
                     String urlPhoto = urlPhotoEdit.getText().toString();
@@ -166,7 +168,7 @@ public class TwoFragment extends Fragment {
                     startLike(URL);
                 } else if (s.equals("done")) {
 
-                    setCount(getCount()+1);
+                    setCount(getCount() + 1);
                     if (getCount() == 8) {
                         textResult.setText("The server failed during fulfilling the request, please retry later.");
                         dialog.cancel();

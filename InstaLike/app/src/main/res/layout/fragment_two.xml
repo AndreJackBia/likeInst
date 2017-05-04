@@ -117,6 +117,8 @@
                 android:layout_below="@+id/textViewResult"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="13sp"
+                android:layout_marginEnd="13sp"
+                android:layout_marginRight="13sp"
                 android:layout_marginTop="28sp"
                 android:background="@drawable/instbackground"
                 android:text="Get Likes"
