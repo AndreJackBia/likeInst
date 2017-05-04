@@ -17,6 +17,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import java.util.ArrayList;
 
 import okhttp3.OkHttpClient;
@@ -36,7 +39,8 @@ public class TwoFragment extends Fragment {
     private Button start;
     NumberPicker np;
     String[] numSpin = new String[20];
-
+    private static final String TAG = "TwoFragment";
+    private AdView mAdView;
 
     public TwoFragment() {
         // Required empty public constructor
@@ -57,7 +61,9 @@ public class TwoFragment extends Fragment {
         webView = (WebView) view.findViewById(R.id.webView);
         start = (Button) view.findViewById(R.id.buttonStart);
         np = (NumberPicker) view.findViewById(R.id.numberPicker);
-
+        mAdView = (AdView) view.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         return view;
     }

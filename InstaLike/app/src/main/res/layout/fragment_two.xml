@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.david.instalike.TwoFragment">
 
     <ScrollView
@@ -18,15 +19,17 @@
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:layout_width="0px"
-                android:layout_height="0px"/>
+                android:layout_height="0px"
+                android:id="@+id/linearLayout" />
 
             <ImageView
                 android:id="@+id/imageView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="15sp"
-                android:src="@drawable/instatitle" />
+                android:layout_marginTop="66dp"
+                android:src="@drawable/instatitle"
+                android:layout_below="@+id/linearLayout"
+                android:layout_centerHorizontal="true" />
 
             <TextView
                 android:id="@+id/urlPhoto"
@@ -129,5 +132,15 @@
         </RelativeLayout>
 
 
+
     </ScrollView>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/TextUrl"
+        android:layout_centerHorizontal="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_ad_unit_idtwo"></com.google.android.gms.ads.AdView>
 </FrameLayout>

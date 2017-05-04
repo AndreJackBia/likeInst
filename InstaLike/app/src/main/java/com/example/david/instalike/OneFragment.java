@@ -13,6 +13,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +24,8 @@ import static android.content.Context.CLIPBOARD_SERVICE;
 public class OneFragment extends Fragment {
     private List<String> myList = new ArrayList<String>();
     private List<String> myListTite = new ArrayList<String>();
+    private static final String TAG = "OneFragment";
+    private AdView mAdView;
 
     public OneFragment() {
         // Required empty public constructor
@@ -37,7 +42,9 @@ public class OneFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_one, container, false);
         ListView listView = (ListView) view.findViewById(R.id.listViewHashtag);
-
+        mAdView = (AdView) view.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
         populateList();
 
         populateListView(view);
