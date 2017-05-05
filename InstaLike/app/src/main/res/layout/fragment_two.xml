@@ -106,21 +106,13 @@
             </LinearLayout>
 
 
-            <WebView
-                android:id="@+id/webView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/buttonStart"
-                android:layout_centerHorizontal="true"
-                android:layout_marginLeft="20sp"
-                android:layout_marginRight="20sp"
-                android:layout_marginTop="44sp" />
+
 
             <TextView
                 android:id="@+id/textViewResult"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/webView"
+                android:layout_below="@id/linearlayout1"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="35sp"
                 android:textColor="@android:color/black"
@@ -139,16 +131,7 @@
                 android:layout_alignRight="@+id/imageView2"
                 android:layout_alignEnd="@+id/imageView2" />
 
-            <ImageButton
-                android:id="@+id/imageButtonInsta"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/instagram"
-                android:layout_above="@+id/webView"
-                android:layout_toRightOf="@+id/urlPhoto"
-                android:layout_toEndOf="@+id/urlPhoto"
-                android:layout_marginLeft="15dp"
-                android:layout_marginStart="15dp" />
+
         </RelativeLayout>
 
 

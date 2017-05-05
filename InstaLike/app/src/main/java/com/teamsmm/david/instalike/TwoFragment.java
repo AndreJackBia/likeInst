@@ -1,11 +1,10 @@
 package com.teamsmm.david.instalike;
 
 import android.app.ProgressDialog;
-import android.content.ActivityNotFoundException;
+
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.net.Uri;
+
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,7 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.webkit.WebView;
+
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -40,7 +39,7 @@ public class TwoFragment extends Fragment {
     TextView textResult;
     ProgressDialog dialog;
     String URL;
-    WebView webView;
+
     int count;
     private Button start;
     NumberPicker np;
@@ -66,7 +65,7 @@ public class TwoFragment extends Fragment {
         urlPhotoEdit = (EditText) view.findViewById(R.id.TextUrl);
         textNumber = (TextView) view.findViewById(R.id.TextNumber);
         textResult = (TextView) view.findViewById(R.id.textViewResult);
-        webView = (WebView) view.findViewById(R.id.webView);
+
         start = (Button) view.findViewById(R.id.buttonStart);
         np = (NumberPicker) view.findViewById(R.id.numberPicker);
         mAdView = (AdView) view.findViewById(R.id.adView);
@@ -163,14 +162,13 @@ public class TwoFragment extends Fragment {
                                         inputManager.hideSoftInputFromWindow(
                                                 getActivity().getCurrentFocus().getWindowToken(),
                                                 InputMethodManager.HIDE_NOT_ALWAYS);
-                                        webView.clearView();
+
                                     }
                                 })
                                 .setIcon(android.R.drawable.ic_dialog_alert)
                                 .show();
                     } else {
-                        webView.getSettings().setJavaScriptEnabled(true);
-                        webView.loadUrl(urlPhotoEdit.getText().toString());
+
 
                     }
 
@@ -198,7 +196,7 @@ public class TwoFragment extends Fragment {
                                             inputManager.hideSoftInputFromWindow(
                                                     getActivity().getCurrentFocus().getWindowToken(),
                                                     InputMethodManager.HIDE_NOT_ALWAYS);
-                                            webView.clearView();
+
                                         }
                                     })
                                     .setIcon(android.R.drawable.ic_dialog_alert)
@@ -222,22 +220,7 @@ public class TwoFragment extends Fragment {
             }
         });
 
-        goToInsta.setOnClickListener(new ImageButton.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Uri uri = Uri.parse("http://instagram.com/_u/");
-                Intent likeIng = new Intent(Intent.ACTION_VIEW, uri);
 
-                likeIng.setPackage("com.instagram.android");
-
-                try {
-                    startActivity(likeIng);
-                } catch (ActivityNotFoundException e) {
-                    startActivity(new Intent(Intent.ACTION_VIEW,
-                            Uri.parse("http://instagram.com/")));
-                }
-            }
-        });
     }
 
     private void startLike(String URL) {
