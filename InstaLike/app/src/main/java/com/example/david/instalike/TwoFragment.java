@@ -2,7 +2,10 @@ package com.example.david.instalike;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,6 +17,7 @@ import android.webkit.WebView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -47,6 +51,7 @@ public class TwoFragment extends Fragment {
     private static final String TAG = "TwoFragment";
     private AdView mAdView;
     InterstitialAd mInterstitialAd;
+    ImageButton goToInsta;
 
     public TwoFragment() {
         // Required empty public constructor
@@ -68,6 +73,7 @@ public class TwoFragment extends Fragment {
         start = (Button) view.findViewById(R.id.buttonStart);
         np = (NumberPicker) view.findViewById(R.id.numberPicker);
         mAdView = (AdView) view.findViewById(R.id.adView);
+        goToInsta = (ImageButton) view.findViewById(R.id.imageButtonInsta);
         AdRequest adRequest = new AdRequest.Builder().build();
         view.setTag("fragmentTwo");
         mAdView.loadAd(adRequest);
@@ -197,6 +203,23 @@ public class TwoFragment extends Fragment {
 
                 } catch (Exception e) {
                     e.printStackTrace();
+                }
+            }
+        });
+
+        goToInsta.setOnClickListener(new ImageButton.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse("http://instagram.com/_u/");
+                Intent likeIng = new Intent(Intent.ACTION_VIEW, uri);
+
+                likeIng.setPackage("com.instagram.android");
+
+                try {
+                    startActivity(likeIng);
+                } catch (ActivityNotFoundException e) {
+                    startActivity(new Intent(Intent.ACTION_VIEW,
+                            Uri.parse("http://instagram.com/")));
                 }
             }
         });
