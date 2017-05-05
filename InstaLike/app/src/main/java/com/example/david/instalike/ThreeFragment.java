@@ -34,6 +34,7 @@ public class ThreeFragment extends Fragment {
         t1.setMovementMethod(LinkMovementMethod.getInstance());
         mAdView = (AdView) view.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
+        view.setTag("fragmentTwo");
         mAdView.loadAd(adRequest);
         TextView t2 = (TextView) view.findViewById(R.id.textInfo4);
         t2.setMovementMethod(LinkMovementMethod.getInstance());

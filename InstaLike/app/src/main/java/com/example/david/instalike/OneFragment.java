@@ -46,6 +46,7 @@ public class OneFragment extends Fragment {
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
         populateList();
+        view.setTag("fragmentOne");
 
         populateListView(view);
         registerClickCallBack(view);

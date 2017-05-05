@@ -69,6 +69,7 @@ public class TwoFragment extends Fragment {
         np = (NumberPicker) view.findViewById(R.id.numberPicker);
         mAdView = (AdView) view.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
+        view.setTag("fragmentTwo");
         mAdView.loadAd(adRequest);
         mInterstitialAd = new InterstitialAd(getActivity());
         mInterstitialAd.setAdUnitId("ca-app-pub-8190889007212102/9446204873");
@@ -78,7 +79,7 @@ public class TwoFragment extends Fragment {
                 requestNewInterstitial();
 
                 String urlPhoto = urlPhotoEdit.getText().toString();
-                if (!urlPhoto.contains("instagram")) {
+                if (!urlPhoto.contains("instagram")||(urlPhoto.equals(""))) {
                     new AlertDialog.Builder(getActivity())
                             .setTitle("Wrong Input")
                             .setMessage("You inserted an invalid URL")
@@ -90,6 +91,10 @@ public class TwoFragment extends Fragment {
                             .setIcon(android.R.drawable.ic_dialog_alert)
                             .show();
                 } else {
+
+                    if (numEdit == 0) {
+                        numEdit = 10;
+                    }
                     String num = String.valueOf(numEdit);
                     textResult.setText("");
                     dialog = ProgressDialog.show(getActivity(), "Adding likes",
@@ -133,6 +138,7 @@ public class TwoFragment extends Fragment {
                 //textResult.setText("Selected Number : " + newVal);
                 numEdit = newVal * 10;
 
+
             }
         });
 
@@ -140,9 +146,23 @@ public class TwoFragment extends Fragment {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
-                    Toast.makeText(getActivity(), "got the focus", Toast.LENGTH_LONG).show();
-                    webView.getSettings().setJavaScriptEnabled(true);
-                    webView.loadUrl(urlPhotoEdit.getText().toString());
+                    String urlPhoto = urlPhotoEdit.getText().toString();
+                    if (!urlPhoto.contains("instagram")&!urlPhoto.equals("")) {
+                        new AlertDialog.Builder(getActivity())
+                                .setTitle("Wrong Input")
+                                .setMessage("You inserted an invalid URL")
+                                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        urlPhotoEdit.setText("");
+                                    }
+                                })
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .show();
+                    } else {
+                        webView.getSettings().setJavaScriptEnabled(true);
+                        webView.loadUrl(urlPhotoEdit.getText().toString());
+                    }
+
 
                 }
             }
@@ -153,7 +173,7 @@ public class TwoFragment extends Fragment {
                     if (mInterstitialAd.isLoaded()) {
                         mInterstitialAd.show();
                     } else {
-                        String urlPhoto = urlPhotoEdit.getText().toString();
+                        /*String urlPhoto = urlPhotoEdit.getText().toString();
                         if (!urlPhoto.contains("instagram")) {
                             new AlertDialog.Builder(getActivity())
                                     .setTitle("Wrong Input")
@@ -172,7 +192,7 @@ public class TwoFragment extends Fragment {
                             String num = String.valueOf(numEdit);
                             URL = "https://api.joinsta.com/v1/?link=" + urlPhoto + "&maxlikes=" + num + "";
                             startLike(URL);
-                        }
+                        }*/
                     }
 
                 } catch (Exception e) {
@@ -238,8 +258,8 @@ public class TwoFragment extends Fragment {
 
             try {
                 if (s == null) {
-                    setCountNull(getCountNull()+1);
-                    if(getCountNull()==10){
+                    setCountNull(getCountNull() + 1);
+                    if (getCountNull() == 10) {
                         textResult.setText("The server failed during fulfilling the request, please retry later.");
                         dialog.cancel();
                         setCountNull(0);

@@ -1,8 +1,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:ads="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.david.instalike.TwoFragment">
 
     <ScrollView
@@ -15,21 +15,17 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <LinearLayout
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:layout_width="0px"
-                android:layout_height="0px"
-                android:id="@+id/linearLayout" />
+
+
 
             <ImageView
                 android:id="@+id/imageView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="66dp"
-                android:src="@drawable/instatitle"
-                android:layout_below="@+id/linearLayout"
-                android:layout_centerHorizontal="true" />
+
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="66sp"
+                android:src="@drawable/instatitle" />
 
             <TextView
                 android:id="@+id/urlPhoto"
@@ -65,10 +61,10 @@
                 android:id="@+id/linearlayout1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="30sp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/TextUrl"
+                android:layout_marginTop="30sp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -123,14 +119,13 @@
                 android:id="@+id/buttonStart"
                 android:layout_width="100sp"
                 android:layout_height="50sp"
+                android:layout_below="@+id/linearlayout1"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="25dp"
                 android:background="@drawable/instbackground"
                 android:text="Get Likes"
-                android:layout_marginTop="25dp"
-                android:textColor="@android:color/white"
-                android:layout_below="@+id/linearlayout1"
-                android:layout_centerHorizontal="true" />
+                android:textColor="@android:color/white" />
         </RelativeLayout>
-
 
 
     </ScrollView>
