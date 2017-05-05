@@ -1,8 +1,8 @@
 package com.example.david.instalike;
 
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -13,15 +13,13 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.NumberPicker;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import com.google.android.gms.ads.AdListener;
@@ -29,7 +27,6 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 
-import java.util.ArrayList;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -85,7 +82,7 @@ public class TwoFragment extends Fragment {
                 requestNewInterstitial();
 
                 String urlPhoto = urlPhotoEdit.getText().toString();
-                if (!urlPhoto.contains("instagram")||(urlPhoto.equals(""))) {
+                if (!urlPhoto.contains("instagram") || (urlPhoto.equals(""))) {
                     new AlertDialog.Builder(getActivity())
                             .setTitle("Wrong Input")
                             .setMessage("You inserted an invalid URL")
@@ -153,13 +150,20 @@ public class TwoFragment extends Fragment {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
                     String urlPhoto = urlPhotoEdit.getText().toString();
-                    if (!urlPhoto.contains("instagram")&!urlPhoto.equals("")) {
+                    if (!urlPhoto.contains("instagram") & !urlPhoto.equals("")) {
                         new AlertDialog.Builder(getActivity())
                                 .setTitle("Wrong Input")
                                 .setMessage("You inserted an invalid URL")
                                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         urlPhotoEdit.setText("");
+                                        InputMethodManager inputManager =
+                                                (InputMethodManager) getContext().
+                                                        getSystemService(Context.INPUT_METHOD_SERVICE);
+                                        inputManager.hideSoftInputFromWindow(
+                                                getActivity().getCurrentFocus().getWindowToken(),
+                                                InputMethodManager.HIDE_NOT_ALWAYS);
+                                        webView.clearView();
                                     }
                                 })
                                 .setIcon(android.R.drawable.ic_dialog_alert)
@@ -167,6 +171,7 @@ public class TwoFragment extends Fragment {
                     } else {
                         webView.getSettings().setJavaScriptEnabled(true);
                         webView.loadUrl(urlPhotoEdit.getText().toString());
+
                     }
 
 
@@ -179,7 +184,7 @@ public class TwoFragment extends Fragment {
                     if (mInterstitialAd.isLoaded()) {
                         mInterstitialAd.show();
                     } else {
-                        /*String urlPhoto = urlPhotoEdit.getText().toString();
+                        String urlPhoto = urlPhotoEdit.getText().toString();
                         if (!urlPhoto.contains("instagram")) {
                             new AlertDialog.Builder(getActivity())
                                     .setTitle("Wrong Input")
@@ -187,6 +192,13 @@ public class TwoFragment extends Fragment {
                                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int which) {
                                             urlPhotoEdit.setText("");
+                                            InputMethodManager inputManager =
+                                                    (InputMethodManager) getContext().
+                                                            getSystemService(Context.INPUT_METHOD_SERVICE);
+                                            inputManager.hideSoftInputFromWindow(
+                                                    getActivity().getCurrentFocus().getWindowToken(),
+                                                    InputMethodManager.HIDE_NOT_ALWAYS);
+                                            webView.clearView();
                                         }
                                     })
                                     .setIcon(android.R.drawable.ic_dialog_alert)
@@ -195,10 +207,13 @@ public class TwoFragment extends Fragment {
                             textResult.setText("");
                             dialog = ProgressDialog.show(getActivity(), "Adding likes",
                                     "loading...", true);
+                            if (numEdit == 0) {
+                                numEdit = 10;
+                            }
                             String num = String.valueOf(numEdit);
                             URL = "https://api.joinsta.com/v1/?link=" + urlPhoto + "&maxlikes=" + num + "";
                             startLike(URL);
-                        }*/
+                        }
                     }
 
                 } catch (Exception e) {
@@ -283,31 +298,84 @@ public class TwoFragment extends Fragment {
                 if (s == null) {
                     setCountNull(getCountNull() + 1);
                     if (getCountNull() == 10) {
-                        textResult.setText("The server failed during fulfilling the request, please retry later.");
+                        new AlertDialog.Builder(getActivity())
+                                .setTitle("Sorry!")
+                                .setMessage("The server failed during fulfilling the request, please retry later.")
+                                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        //urlPhotoEdit.setText("");
+                                    }
+                                })
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .show();
+                        // textResult.setText("The server failed during fulfilling the request, please retry later.");
                         dialog.cancel();
                         setCountNull(0);
                     }
-                    Toast.makeText(getActivity(), "ritorna null", Toast.LENGTH_SHORT).show();
                     startLike(URL);
                 } else if (s.equals("done")) {
 
                     setCount(getCount() + 1);
                     if (getCount() == 10) {
-                        textResult.setText("The server failed during fulfilling the request, please retry later.");
+
+                        new AlertDialog.Builder(getActivity())
+                                .setTitle("Sorry!")
+                                .setMessage("The server failed during fulfilling the request, please retry later.")
+                                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        //urlPhotoEdit.setText("");
+
+                                    }
+                                })
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .show();
+                        // textResult.setText("The server failed during fulfilling the request, please retry later.");
                         dialog.cancel();
                         setCount(0);
                     } else {
-                        Toast.makeText(getActivity(), "ritorna done", Toast.LENGTH_SHORT).show();
                         startLike(URL);
                     }
                 } else if (s.equals("finish")) {
-                    textResult.setText(s);
+                    new AlertDialog.Builder(getActivity())
+                            .setTitle("Congratulations!")
+                            .setMessage("You got new likes!!!")
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    urlPhotoEdit.setText("");
+
+                                }
+                            })
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
+
+
+                    // textResult.setText(s);
                     dialog.cancel();
                 } else if (s.equals("empty")) {
-                    textResult.setText("Please insert link");
+                    new AlertDialog.Builder(getActivity())
+                            .setTitle("Wrong input")
+                            .setMessage("Please insert a valid URL")
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //urlPhotoEdit.setText("");
+                                }
+                            })
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
+                    //textResult.setText("Please insert link");
                     dialog.cancel();
                 } else if (s.equals("error link")) {
-                    textResult.setText(s);
+                    new AlertDialog.Builder(getActivity())
+                            .setTitle("Wrong input")
+                            .setMessage("Please insert a valid URL")
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //urlPhotoEdit.setText("");
+                                }
+                            })
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
+                    //textResult.setText(s);
                     dialog.cancel();
 
                 } else {
