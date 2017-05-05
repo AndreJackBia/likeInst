@@ -1,4 +1,4 @@
-package com.example.david.instalike;
+package com.teamsmm.david.instalike;
 
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
@@ -75,7 +75,7 @@ public class TwoFragment extends Fragment {
         view.setTag("fragmentTwo");
         mAdView.loadAd(adRequest);
         mInterstitialAd = new InterstitialAd(getActivity());
-        mInterstitialAd.setAdUnitId("ca-app-pub-8190889007212102/9446204873");
+        mInterstitialAd.setAdUnitId("ca-app-pub-8190889007212102/9621001670");
         mInterstitialAd.setAdListener(new AdListener() {
             @Override
             public void onAdClosed() {

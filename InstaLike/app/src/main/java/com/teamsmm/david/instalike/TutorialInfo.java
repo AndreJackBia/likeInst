@@ -1,4 +1,4 @@
-package com.example.david.instalike;
+package com.teamsmm.david.instalike;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
