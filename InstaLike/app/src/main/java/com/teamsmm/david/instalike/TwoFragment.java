@@ -69,7 +69,7 @@ public class TwoFragment extends Fragment {
         start = (Button) view.findViewById(R.id.buttonStart);
         np = (NumberPicker) view.findViewById(R.id.numberPicker);
         mAdView = (AdView) view.findViewById(R.id.adView);
-        goToInsta = (ImageButton) view.findViewById(R.id.imageButtonInsta);
+
         AdRequest adRequest = new AdRequest.Builder().build();
         view.setTag("fragmentTwo");
         mAdView.loadAd(adRequest);
