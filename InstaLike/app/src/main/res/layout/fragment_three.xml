@@ -1,0 +1,121 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.david.instalike.ThreeFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/TextUrl"
+            android:layout_centerHorizontal="true"
+            ads:adSize="BANNER"
+            ads:adUnitId="@string/banner_ad_unit_idthree"></com.google.android.gms.ads.AdView>
+
+        <TextView
+            android:id="@+id/textInfo1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textInfo3"
+            android:layout_alignStart="@+id/textInfo3"
+            android:layout_centerVertical="true"
+            android:text="Powered by"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/textInfo3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textInfo1"
+            android:layout_marginLeft="48dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="40dp"
+            android:text="Works on "
+            android:textColor="@android:color/black" />
+
+
+        <TextView
+            android:id="@+id/textInfo6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textInfo3"
+            android:layout_alignStart="@+id/textInfo3"
+            android:layout_below="@+id/textInfo3"
+            android:layout_marginTop="40dp"
+            android:text="Developed with"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/textInfo2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textInfo1"
+            android:layout_alignBottom="@+id/textInfo1"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="53dp"
+            android:layout_marginRight="53dp"
+            android:autoLink="web"
+            android:text="@string/linktositeAPI"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/textInfo4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textInfo3"
+            android:layout_alignBottom="@+id/textInfo3"
+            android:layout_alignEnd="@+id/textInfo2"
+            android:layout_alignRight="@+id/textInfo2"
+            android:autoLink="web"
+            android:text="@string/linktosite"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/textInfo7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textInfo6"
+            android:layout_alignBottom="@+id/textInfo6"
+            android:layout_alignEnd="@+id/textInfo4"
+            android:layout_alignRight="@+id/textInfo4"
+            android:autoLink="web"
+            android:text="@string/linktositeNORMAL"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/textInfoLong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@+id/imageInfo"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="127dp"
+            android:text="Using the joinsta API, you allow to receive information about you or the server from which requests are made (namely IP-addresses, user agent, your age, sex, address of residence, breast size)."
+            android:textAlignment="center"
+            android:textColor="@android:color/black" />
+
+        <ImageView
+            android:id="@+id/imageInfo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@+id/adView"
+            android:layout_marginTop="16dp"
+            android:layout_toEndOf="@+id/textInfo6"
+            android:layout_toRightOf="@+id/textInfo6"
+            android:src="@drawable/info" />
+
+
+    </RelativeLayout>
+
+</FrameLayout>

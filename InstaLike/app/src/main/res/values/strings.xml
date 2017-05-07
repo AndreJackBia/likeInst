@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">InstaLike</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="linktosite"> <a href="www.joinsta.com">Joinsta.com</a></string>
+    <string name="linktositeAPI"> <a href="www.joinsta.com">Joinsta API</a></string>
+    <string name="linktositeNORMAL"> <a href="www.joinsta.com">Joinsta</a></string>
+    <string name="banner_ad_unit_idtwo">ca-app-pub-8190889007212102/5190802071</string>
+    <string name="banner_ad_unit_idone">ca-app-pub-8190889007212102/3714068872</string>
+    <string name="banner_ad_unit_idthree">ca-app-pub-8190889007212102/8144268479</string>
+
+</resources>
